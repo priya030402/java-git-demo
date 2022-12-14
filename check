@@ -1,0 +1,25 @@
+'use strict';
+
+// Register `phoneList` component, along with its associated controller and template
+angular.
+  module('phoneList').
+  component('phoneList', {
+    templateUrl: 'phone-list/phone-list.template.html',
+    controller: ['$http', function PhoneListController($http) {
+      var self = this;
+      self.orderProp = 'age';
+      //-------------------------------------------------------------
+      //demo example
+      $http.get('https://jsonplaceholder.typicode.com/users/11')
+      .then((response) => {
+        console.log(response.data.name);
+      })
+      .catch((error) => {
+        console.log(error.msg);
+    });
+
+      $http.get('phones/phones.json').then(function(response) {
+        self.phones = response.data;
+      });
+    }]
+  });
